@@ -1,0 +1,192 @@
+/* =========================================================
+   Eşim Olur Musun?  —  styles.css
+   ========================================================= */
+
+:root{
+  --bg-top:#ffe6f2;
+  --bg-mid:#ffc1de;
+  --bg-bot:#ff9bc6;
+  --blob-1:#ff7eb6;
+  --blob-2:#ffd9ec;
+  --accent:#ff2f7e;
+  --accent-2:#ff6aa6;
+  --accent-dark:#d81f63;
+  --no:#ecccdb;
+  --text:#6e2348;
+  --text-soft:#a14d76;
+  --card:rgba(255,255,255,.80);
+  --card-border:rgba(255,255,255,.95);
+  --shadow:0 32px 64px -22px rgba(216,31,99,.50);
+}
+
+*{box-sizing:border-box; margin:0; padding:0;}
+[hidden]{display:none !important;}
+html,body{height:100%;}
+
+body{
+  min-height:100vh;
+  font-family:'Quicksand','Trebuchet MS',system-ui,sans-serif;
+  color:var(--text);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+  position:relative;
+  overflow:hidden;
+  background:
+    radial-gradient(1100px 760px at 14% 8%, var(--blob-2), transparent 60%),
+    radial-gradient(900px 720px at 88% 92%, var(--blob-1), transparent 55%),
+    linear-gradient(160deg, var(--bg-top) 0%, var(--bg-mid) 55%, var(--bg-bot) 100%);
+}
+
+/* ---- Arka plandaki uçuşan kalpler ---- */
+.bg-hearts{position:fixed; inset:0; z-index:0; pointer-events:none;}
+.bg-hearts span{
+  position:absolute;
+  bottom:-50px;
+  opacity:.5;
+  animation:floatUp linear infinite;
+  will-change:transform;
+}
+@keyframes floatUp{
+  0%{transform:translateY(0) rotate(0deg); opacity:0;}
+  12%{opacity:.55;}
+  88%{opacity:.5;}
+  100%{transform:translateY(-118vh) rotate(360deg); opacity:0;}
+}
+
+/* ---- Kart ---- */
+.card{
+  position:relative;
+  z-index:2;
+  width:min(440px,100%);
+  background:var(--card);
+  -webkit-backdrop-filter:blur(16px) saturate(140%);
+  backdrop-filter:blur(16px) saturate(140%);
+  border:1.5px solid var(--card-border);
+  border-radius:36px;
+  padding:48px 34px 42px;
+  text-align:center;
+  box-shadow:var(--shadow);
+  animation:cardIn .7s cubic-bezier(.2,.9,.3,1.3) both;
+}
+@keyframes cardIn{
+  from{opacity:0; transform:translateY(26px) scale(.9);}
+  to{opacity:1; transform:translateY(0) scale(1);}
+}
+.card.shake{animation:shake .42s ease;}
+@keyframes shake{
+  0%,100%{transform:translateX(0) rotate(0);}
+  20%{transform:translateX(-9px) rotate(-1deg);}
+  40%{transform:translateX(9px) rotate(1deg);}
+  60%{transform:translateX(-6px);}
+  80%{transform:translateX(6px);}
+}
+
+/* ---- Ayıcık / emoji ---- */
+.bear{
+  font-size:5rem;
+  line-height:1;
+  display:inline-block;
+  filter:drop-shadow(0 12px 16px rgba(216,31,99,.28));
+  animation:bob 2.4s ease-in-out infinite;
+}
+@keyframes bob{
+  0%,100%{transform:translateY(0) rotate(-3deg);}
+  50%{transform:translateY(-10px) rotate(3deg);}
+}
+.bear--happy{
+  animation:happyPop .6s cubic-bezier(.2,.9,.3,1.4) both,
+            bob 2.2s ease-in-out .6s infinite;
+}
+@keyframes happyPop{
+  0%{transform:scale(0) rotate(-40deg);}
+  70%{transform:scale(1.25) rotate(10deg);}
+  100%{transform:scale(1) rotate(0);}
+}
+
+/* ---- Yazılar ---- */
+.question{
+  font-family:'Pacifico','Brush Script MT',cursive;
+  font-weight:400;
+  font-size:clamp(1.6rem,6vw,2.35rem);
+  line-height:1.3;
+  color:var(--text);
+  margin:20px auto 30px;
+  max-width:18ch;
+  min-height:2.6em;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+/* ---- Butonlar ---- */
+.buttons{
+  display:flex;
+  gap:16px;
+  justify-content:center;
+  align-items:center;
+  flex-wrap:wrap;
+  min-height:64px;
+}
+.btn{
+  font-family:'Quicksand','Trebuchet MS',sans-serif;
+  font-weight:700;
+  font-size:1.05rem;
+  line-height:1;
+  border:none;
+  border-radius:999px;
+  padding:.78em 1.7em;
+  cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
+  transition:transform .18s ease, box-shadow .25s ease, filter .2s ease;
+}
+.btn:focus-visible{outline:3px solid var(--accent-dark); outline-offset:3px;}
+.btn--yes{
+  background:linear-gradient(135deg,var(--accent-2),var(--accent));
+  color:#fff;
+  box-shadow:0 14px 26px -8px rgba(216,31,99,.6);
+}
+.btn--yes:hover{transform:translateY(-2px) scale(1.05);}
+.btn--yes:active{transform:translateY(0) scale(.97);}
+.btn--no{
+  background:var(--no);
+  color:var(--text-soft);
+  box-shadow:0 8px 16px -10px rgba(161,77,118,.5);
+}
+.btn--no:hover{filter:brightness(.97);}
+.btn--no:active{transform:scale(.96);}
+
+/* ---- Kabul ekranı ---- */
+.screen--success{animation:fadeIn .55s ease both;}
+@keyframes fadeIn{from{opacity:0; transform:scale(.94);} to{opacity:1; transform:scale(1);}}
+.yay{
+  font-family:'Pacifico','Brush Script MT',cursive;
+  font-weight:400;
+  font-size:clamp(2rem,8vw,2.9rem);
+  color:var(--accent-dark);
+  margin:16px 0 10px;
+}
+.yay-sub{
+  font-weight:600;
+  font-size:1.18rem;
+  color:var(--text-soft);
+}
+
+/* ---- Yukarıdan düşen kalpler ---- */
+.rain{position:fixed; inset:0; z-index:5; pointer-events:none; overflow:hidden;}
+.rain span{
+  position:absolute;
+  top:-60px;
+  animation:fall linear forwards;
+  will-change:transform;
+  filter:drop-shadow(0 4px 6px rgba(216,31,99,.2));
+}
+@keyframes fall{
+  0%{transform:translateY(-12vh) rotate(0deg); opacity:1;}
+  100%{transform:translateY(115vh) rotate(540deg); opacity:.85;}
+}
+
+@media (prefers-reduced-motion: reduce){
+  .bg-hearts span,.bear,.card{animation:none !important;}
+}

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eşim Olur Musun? 💍</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Arka plandaki uçuşan kalpler -->
+  <div class="bg-hearts" id="bgHearts" aria-hidden="true"></div>
+
+  <!-- Ana kart -->
+  <main class="card" id="card">
+
+    <!-- SORU EKRANI -->
+    <section class="screen screen--question" id="questionScreen">
+      <div class="bear" id="bear">🧸</div>
+      <h1 class="question" id="questionText">Okey, eşim olur musun? 🥺</h1>
+      <div class="buttons">
+        <button class="btn btn--yes" id="yesBtn">Evet 💖</button>
+        <button class="btn btn--no" id="noBtn">Hayır</button>
+      </div>
+    </section>
+
+    <!-- KABUL EKRANI -->
+    <section class="screen screen--success" id="successScreen" hidden>
+      <div class="bear bear--happy">🥰</div>
+      <h1 class="yay">Yaşasııın! 🎉</h1>
+      <p class="yay-sub">Seni çoook seviyorum! 💕💍</p>
+    </section>
+
+  </main>
+
+  <!-- Yukarıdan düşen kalpler -->
+  <div class="rain" id="rain" aria-hidden="true"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
